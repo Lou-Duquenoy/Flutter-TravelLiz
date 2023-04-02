@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "614308430922",
+    "project_id": "travelcare-effeb",
+    "storage_bucket": "travelcare-effeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:614308430922:android:99cc484397d546c7f252b3",
+        "android_client_info": {
+          "package_name": "com.example.flutter_dialogflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "614308430922-5k6h4bc2mhl75qi2h2cms3ovgu482h1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXaZA0bm_V_uMZ-qg6E07RQS3NDO8qjYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "614308430922-5k6h4bc2mhl75qi2h2cms3ovgu482h1r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

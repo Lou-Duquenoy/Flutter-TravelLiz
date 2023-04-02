@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "loutest-brpp",
+  "private_key_id": "2bbf733880978583b82c4fa6ac932ad8e9d70501",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDZpgWmQbYDV/KG\nMl2rnCcvE0cB3EKLYP4KSM8f2EqifQuQX+inF/p5b8HS2HKAJlB0ms6Ts/VsBy2S\nOm3ZZgj3PfBJ0Q3XTY9gHoXtoIVLkpu7SeV3ja/815qvVcUy/joBpgpJPDC4bWTG\nxhK3HYr8RysRrbgbIcSxa9hq2asqtOq5+rak1r+Uk7yU2VRTVYKQFGAzEsAe/rHF\nACx6a2Z0t7srHCELK7q7obYJq0CYnuXGDNUB7hn+c4UWbm5c4Eo3yFgJrZh4ORtf\nHiV5eESM25CUZEnN6XajHg9m389QFMs4+JkydKn/eLEeWurDoCWSFHqnklpV1Qn0\naqTXUubXAgMBAAECggEAEJ61ars012+FVQsOjRa5BUa/EtzLdhI7g/SIYIGnPV44\nHle8j9nsZg6LKfseTzvdw/G4WZ4R3SR1LefpUIMSpzKjITfmCy1gh/H8vycVVq6E\n1tnvPGBk8nVSWhY+H0U7j7mqqmn+vG6aFfW1IyeN3/LdTpXJ68R53SSDm7EweWvA\nJ4VmhAJzH3va93FSVYcIPrpmRsJlkBJ4hElYuMh7oVQU3VzlgWIsEowWD6cF8Bb7\nLxmLD9F4R7k0xHNPCi1L14NTlX24Rp7QpfL5iMwxzkl2Y6APFouKbeMtNt//n8cF\nVzoPvVjG6/Ng4jM3Qr4vrplzAmA7nfcfZ04rrSZWpQKBgQD9G+xikRPzWY4DnJJ0\np7a1uVWpeN5P6TdPpUsFc7yya6rE6H+Kx6B94yyEbvi41kf5/b/jhzyoKJhPy/WO\nljgSnnVOFHwNm2ROnXpGKuu22vMuOaokjm6fzfDck6/niVGO/zYyADiOWYGU75pv\njEsm4I1T3Db8i+zCmvyFI9o8OwKBgQDcImn+k/Rb83WFpayNur4+8zRrN0sBneao\nzjNmZjO1P0NUJ/kA2rhorFremENkyiUIKzHziFL1URY9hMimM/S3i3P6Io0yWU9M\nwXRthsf2qfCIxDwd5uz9leTI7wEF10CbidIBvK6gw8xaliECxrgilsSH3jHa88pI\nmzXa/CKCFQKBgQDdIJAcbPMpH4xay2eIUx3lFc4pCVfwKKgSBS7NzJeGqVnAPf9v\nl4g3c0lpSioyEcNAPNhwR65Om2i2DlKyB7tlSNrjJDJdEO1JYXt54fWdAxyBvg9P\ncMBlDN7pVn3PosCGVaFbfaXrd3cmT051NfRSOsw9/55qdTSbsBv9lZ0MEQKBgCLd\noIQd0votWVPNpcLc7PzzcD37B/o9lCbwYdu6HD58wqE1o46rFcIealYPL71q9uqQ\nTN0RnnIUYb1kppMMb5oSkE/x4QM0egbiLRqb2lgLGnnO+uaRiL+xWgcpM7RFH4qD\nDawQwmfcGyXN2XSjHM79qisK2kKfkk5lpuYEQULxAoGBALhxce6h9DMKpv08nxJL\nCHGJ2a0uRt3kB0XsdY+KDAAhcEncHoh7drCQjrIScLZgBvI+64+UY6wf8jL5oAm9\nJ7x9PQ0pyNQG2Juuj6ch4lKyLzY66HB0uW2YZeCrryEKGcDtsqa5d+g7TyV5e6n1\n/NmLzhFZMPrghcJTw4PH2tff\n-----END PRIVATE KEY-----\n",
+  "client_email": "louduquenoy@loutest-brpp.iam.gserviceaccount.com",
+  "client_id": "104507417320335486680",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/louduquenoy%40loutest-brpp.iam.gserviceaccount.com"
+}
