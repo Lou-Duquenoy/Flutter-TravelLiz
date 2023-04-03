@@ -34,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
     });
 
     final response = await http.post(
-      Uri.parse('$apiBaseUrl/auth/login'),
+      Uri.parse('http://10.0.2.2:8000/auth/login'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({'name': _nameTextController.text}),
     );

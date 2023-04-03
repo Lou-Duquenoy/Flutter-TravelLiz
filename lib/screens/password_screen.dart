@@ -34,7 +34,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
     });
 
     final response = await http.post(
-      Uri.parse('$apiBaseUrl/auth/password'),
+      Uri.parse('http://10.0.2.2:8000/auth/password'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({'name': widget.name, 'password': _passwordTextController.text}),
     );
