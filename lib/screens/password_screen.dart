@@ -8,9 +8,9 @@ import 'package:http/http.dart' as http;
 import '../reusable_widgets/reusable_widget.dart';
 
 class PasswordScreen extends StatefulWidget {
-  final String name;
+  final String email;
 
-  const PasswordScreen({Key? key, required this.name}) : super(key: key);
+  const PasswordScreen({Key? key, required this.email}) : super(key: key);
 
   @override
   _PasswordScreenState createState() => _PasswordScreenState();
@@ -18,16 +18,21 @@ class PasswordScreen extends StatefulWidget {
 
 class _PasswordScreenState extends State<PasswordScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
-
+  final TextEditingController _confirmPasswordTextController = TextEditingController();
   bool _isPasswordValid = false;
   bool _isLoading = false;
+  bool _doPasswordsMatch = false;
 
   void _onPasswordChanged() {
     setState(() {
       _isPasswordValid = _passwordTextController.text.isNotEmpty;
     });
   }
-
+  void _onConfirmPasswordChanged() {
+    setState(() {
+      _doPasswordsMatch = _confirmPasswordTextController.text == _passwordTextController.text;
+    });
+  }
   Future<void> _savePassword() async {
     setState(() {
       _isLoading = true;
@@ -36,20 +41,20 @@ class _PasswordScreenState extends State<PasswordScreen> {
     final response = await http.post(
       Uri.parse('http://10.0.2.2:8000/auth/password'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'name': widget.name, 'password': _passwordTextController.text}),
+      body: jsonEncode({'email': widget.email, 'password': _passwordTextController.text}),
     );
 
     print(response.body);
     if (response.statusCode == 200) {
       final responseData = jsonDecode(response.body);
-
+      
       if (responseData['status'] == 'success') {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Password saved successfully.')),
         );
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen(name: widget.name)),
+          MaterialPageRoute(builder: (context) => HomeScreen(email: widget.email)),
     );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -67,43 +72,80 @@ class _PasswordScreenState extends State<PasswordScreen> {
     });
   }
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [hexStringToColor("CB2B93"), hexStringToColor("9546C4"), hexStringToColor("5E61F4")],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(
-              20,
-              MediaQuery.of(context).size.height * 0.2,
-              20,
-              0,
-            ),
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Container(
+          child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 30),
-                Text('Welcome, ${widget.name}'),
-                const SizedBox(height: 20),
-                reusableTextField(
-                  "Enter Password",
-                  Icons.lock_outline,
-                  true,
-                  _passwordTextController,
-                  onChanged: (_) => _onPasswordChanged(),
+
+                Text(
+                  'Créer',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+                SizedBox(height: 20), // Ajoute un espace vertical de 20 pixels
+                Text(
+                  'votre compte',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 0, 0, 0),
+                  ),
+                ),
+
+                const SizedBox(height: 30),
+                
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5FBFC),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: TextField(
+                    controller: _passwordTextController,
+                    onChanged: (_) => _onPasswordChanged(),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Mot de passe',
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _isPasswordValid && !_isLoading ? _savePassword : null,
-                  child: _isLoading ? CircularProgressIndicator() : Text('Save Password'),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5FBFC),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: TextField(
+                    controller: _confirmPasswordTextController,
+                    onChanged: (_) => _onConfirmPasswordChanged(),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Confirmer',
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  width: double.infinity, // Set the width to infinity
+                  child: ElevatedButton(
+                    onPressed: _isPasswordValid && _doPasswordsMatch && !_isLoading ? _savePassword : null,
+                    child: _isLoading ? CircularProgressIndicator() : Text('Save Password'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF00CDBD), // Set the background color of the button
+                    ),
+                  ),
                 ),
               ],
             ),

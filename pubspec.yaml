@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   dialog_flowtter:
+  flutter_svg: ^0.22.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -66,6 +67,7 @@ flutter:
 
   assets:
     - assets/dialog_flow_auth.json
+    - assets/sendbutton.svg
     - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
