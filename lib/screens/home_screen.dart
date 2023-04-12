@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_dialogflow/screens/signin_screen.dart';
+import 'package:flutter_dialogflow/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/screens/Messages.dart';
 import 'package:dialog_flowtter/dialog_flowtter.dart';
@@ -55,10 +55,10 @@ class _HomeScreenState extends State<HomeScreen> {
               event: EventInput(
                   name: 'notification',
                   parameters: {'date': oneDayBeforeDateDepart.toIso8601String().substring(0, 10)},
-                  languageCode: 'en')),
+                  languageCode: 'fr')),
           queryParams: QueryParams(
             sessionId: DateTime.now().millisecondsSinceEpoch.toString(),
-            languageCode: 'en',
+            languageCode: 'fr',
             eventName: 'notification',
           ),
         );

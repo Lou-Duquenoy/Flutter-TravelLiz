@@ -1,4 +1,4 @@
-import 'package:flutter_dialogflow/screens/signin_screen.dart';
+import 'package:flutter_dialogflow/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const SignInScreen(),
+      home: const SignUpScreen(),
     );
   }
 }

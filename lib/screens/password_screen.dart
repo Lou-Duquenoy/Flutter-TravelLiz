@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_dialogflow/screens/home_screen.dart';
+import 'package:flutter_dialogflow/screens/signin_screen.dart';
 import 'package:flutter_dialogflow/utils/color_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -54,7 +55,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
         );
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen(email: widget.email)),
+          MaterialPageRoute(builder: (context) => SignInScreen(email: widget.email)),
     );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

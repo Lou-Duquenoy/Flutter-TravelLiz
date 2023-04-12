@@ -4,40 +4,43 @@ import 'package:flutter_dialogflow/screens/home_screen.dart';
 import 'package:flutter_dialogflow/screens/password_screen.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dialogflow/screens/signin_screen.dart';
 import 'package:http/http.dart' as http;
 
-
-class SignInScreen extends StatefulWidget {
-  final String email;
-  const SignInScreen({Key? key,required this.email}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController _lastnameTextController = TextEditingController();
+  final TextEditingController _firstnameTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
-  final TextEditingController _passwordTextController = TextEditingController();
 
-  
-  
+  bool _isLastNameValid = false;
+  bool _isFirstNameValid = false;
   bool _isEmailValid = false;
-  bool _isPasswordValid = false;
   bool _isLoading = false;
 
- void _onEmailChanged() {
+  void _onLastNameChanged() {
+    setState(() {
+      _isLastNameValid = _lastnameTextController.text.isNotEmpty;
+    });
+  }
+
+  void _onFirstNameChanged() {
+    setState(() {
+      _isFirstNameValid = _firstnameTextController.text.isNotEmpty;
+    });
+  }
+
+  void _onEmailChanged() {
     setState(() {
       _isEmailValid = _emailTextController.text.isNotEmpty;
     });
   }
-
-  void _onPasswordChanged() {
-    setState(() {
-      _isPasswordValid = _passwordTextController.text.isNotEmpty;
-    });
-  }
-
- 
 
   Future<void> _signIn() async {
     setState(() {
@@ -45,11 +48,10 @@ class _SignInScreenState extends State<SignInScreen> {
     });
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:8000/auth/authenticate'),
+      Uri.parse('http://10.0.2.2:8000/auth/login'),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'email': _emailTextController.text,
-        'password' : _passwordTextController.text
       }),
     );
 
@@ -60,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
         if (responseData['status'] == 'success') {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => HomeScreen(email: widget.email)),
+            MaterialPageRoute(builder: (context) => PasswordScreen(email: _emailTextController.text)),
           );
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -98,7 +100,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 const SizedBox(height: 30),
 
                 Text(
-                  'Se connecter',
+                  'Créer',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 48,
@@ -108,7 +110,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 SizedBox(height: 20), // Ajoute un espace vertical de 20 pixels
                 Text(
-                  'à votre compte',
+                  'votre compte',
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 48,
@@ -118,6 +120,36 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
 
                 const SizedBox(height: 30),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5FBFC),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: TextField(
+                    controller: _lastnameTextController,
+                    onChanged: (_) => _onLastNameChanged(),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Nom',
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color(0xFFF5FBFC),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: TextField(
+                    controller: _firstnameTextController,
+                    onChanged: (_) => _onFirstNameChanged(),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: 'Prenom',
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(
                     color: Color(0xFFF5FBFC),
@@ -134,30 +166,39 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 20),
                 Container(
-                  decoration: BoxDecoration(
-                    color: Color(0xFFF5FBFC),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: TextField(
-                    controller: _passwordTextController,
-                    onChanged: (_) => _onPasswordChanged(),
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      labelText: 'Mot de passe',
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-               
-                Container(
                   width: double.infinity, // Set the width to infinity
                   child: ElevatedButton(
-                    onPressed: _isEmailValid && _isPasswordValid && !_isLoading ? _signIn : null,
-                    child: Text("Se connecter"),
+                    onPressed: _isFirstNameValid && _isEmailValid && _isLastNameValid && !_isLoading ? _signIn : null,
+                    child: Text("S’identifier"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF00CDBD), // Set the background color of the button
                     ),
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Vous avez un compte déjà? ",
+                      style: TextStyle(
+                        color: Colors.grey[700],
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => PasswordScreen(email: _emailTextController.text)),
+                        );
+                      },
+                      child: Text(
+                        "Se connecter",
+                        style: TextStyle(
+                          color: Color(0xFF048177),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
